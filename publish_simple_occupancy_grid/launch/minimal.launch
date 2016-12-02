@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+    <master auto="start"/>
+
+    <arg name="name" default="access_occupancygrid_node" />
+    
+    <node pkg="publish_simple_occupancy_grid" type="publish_simple_occupancy_grid_node" respawn="false" name="$(arg name)" output="screen" />
+
+    <node pkg="rviz" type="rviz" name="rviz" 
+        args="-d $(find publish_simple_occupancy_grid)/rviz/config/minimal.rviz" />
+</launch>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<launch>
+    <master auto="start"/>
+
+    <arg name="name" default="access_occupancygrid_node" />
+    <arg name="global_frame" default="map"/>
+    <arg name="robot_base_frame" default="base_link"/>
+    
+    <node pkg="access_occupancygrid" type="access_occupancygrid_node" respawn="false" name="$(arg name)" output="screen" />
+
+    <node pkg="tf" type="static_transform_publisher" name="base_link_to_map"
+        args="0.0 0.0 0.0 0.0 0.0 0.0 $(arg robot_base_frame) $(arg global_frame) 40" />
+
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find access_occupancygrid)/test/map_small.yaml" />
+
+    <node pkg="rviz" type="rviz" name="rviz" 
+        args="-d $(find access_occupancygrid)/rviz/config/minimal.rviz" />
+</launch>

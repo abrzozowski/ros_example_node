@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package>
+  <name>access_occupancygrid</name>
+  <version>0.0.0</version>
+  <description>The access_occupancygrid package</description>
+
+  <maintainer email="adrian@todo.todo">adrian</maintainer>
+
+  <license>TODO</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>nav_msgs</build_depend>
+  <build_depend>tf</build_depend>
+
+  <run_depend>nav_msgs</run_depend>
+  <run_depend>tf</run_depend>
+</package>

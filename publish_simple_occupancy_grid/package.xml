@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package>
+  <name>publish_simple_occupancy_grid</name>
+  <version>0.0.0</version>
+  <description>The publish_simple_occupancy_grid package</description>
+
+  <maintainer email="adrian@todo.todo">adrian</maintainer>
+  <license>TODO</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+ 
+  <build_depend>nav_msgs</build_depend>
+  <build_depend>roscpp</build_depend>
+
+  <run_depend>nav_msgs</run_depend>
+  <run_depend>roscpp</run_depend>
+</package>
