@@ -8,9 +8,6 @@
     
     <node pkg="access_occupancygrid" type="access_occupancygrid_node" respawn="false" name="$(arg name)" output="screen" />
 
-    <node pkg="tf" type="static_transform_publisher" name="base_link_to_map"
-        args="0.0 0.0 0.0 0.0 0.0 0.0 $(arg robot_base_frame) $(arg global_frame) 40" />
-
     <node name="map_server" pkg="map_server" type="map_server" args="$(find access_occupancygrid)/test/map_small.yaml" />
 
     <node pkg="rviz" type="rviz" name="rviz" 

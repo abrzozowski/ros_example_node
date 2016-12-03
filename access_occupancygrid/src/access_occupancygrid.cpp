@@ -6,32 +6,8 @@ const int MAX_MAP_SIZE = 40;
 
 nav_msgs::OccupancyGrid costmap;
 
-void costmapCallback(const nav_msgs::OccupancyGrid::ConstPtr &cmap)
-{
-    costmap = *cmap;
-}
-
-void drawOccupancyGrid()
-{
-    int width = costmap.info.width;
-    int height = costmap.info.height;
-
-    if (width > MAX_MAP_SIZE || height > MAX_MAP_SIZE)
-    {
-        std::cout << "Sorry, this occupancy grid is too large to draw." << std::endl;
-        return;
-    }
-
-    std::cout << "Data:" << std::endl;
-
-    for (int i = 0; i < height; ++i)
-    {
-        for (int j = 0; j < width; ++j) {
-            std::cout <<  std::setw(3) << (int) costmap.data[i * width + j] << " ";
-        }
-        std::cout << std::endl;
-    }
-}
+void costmapCallback(const nav_msgs::OccupancyGrid::ConstPtr &cmap);
+void drawOccupancyGrid();
 
 int main (int argc , char** argv)
 {
@@ -74,4 +50,31 @@ int main (int argc , char** argv)
     }
 
     return 0;
+}
+
+void costmapCallback(const nav_msgs::OccupancyGrid::ConstPtr &cmap)
+{
+    costmap = *cmap;
+}
+
+void drawOccupancyGrid()
+{
+    int width = costmap.info.width;
+    int height = costmap.info.height;
+
+    if (width > MAX_MAP_SIZE || height > MAX_MAP_SIZE)
+    {
+        std::cout << "Sorry, this occupancy grid is too large to draw." << std::endl;
+        return;
+    }
+
+    std::cout << "Data:" << std::endl;
+
+    for (int i = 0; i < height; ++i)
+    {
+        for (int j = 0; j < width; ++j) {
+            std::cout <<  std::setw(3) << (int) costmap.data[i * width + j] << " ";
+        }
+        std::cout << std::endl;
+    }
 }

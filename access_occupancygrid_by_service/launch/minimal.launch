@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<launch>
+    <master auto="start"/>
+
+    <arg name="name" default="access_occupancygrid_by_service_node" />
+    <arg name="global_frame" default="map"/>
+    <arg name="robot_base_frame" default="base_link"/>
+    <arg name="map_file" default="$(find access_occupancygrid_by_service)/test/map_small.yaml"/>
+    
+    <node pkg="access_occupancygrid_by_service" type="access_occupancygrid_by_service_node" respawn="false" name="$(arg name)" output="screen" />
+
+    <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+
+    <node pkg="rviz" type="rviz" name="rviz" 
+        args="-d $(find access_occupancygrid_by_service)/rviz/config/minimal.rviz" />
+</launch>
