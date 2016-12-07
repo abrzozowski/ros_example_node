@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<launch>
+    <master auto="start"/>
+
+    <arg name="name" default="publish_change_initialpose_rviz_node" />
+    <arg name="name_costmap" default="access_costmap2d_node" />
+    <arg name="map_file" default="$(find publish_change_initialpose_rviz)/test/map.yaml" />
+
+    <node pkg="publish_change_initialpose_rviz" type="publish_change_initialpose_rviz_node" respawn="false" name="$(arg name)" output="screen" />
+    <node pkg="access_costmap2d" type="access_costmap2d_node" respawn="false" name="$(arg name_costmap)" output="screen" />
+
+    <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+    <group ns="$(arg name_costmap)/costmap">
+        <rosparam>
+            plugins: 
+                - {name: static_layer,           type: "costmap_2d::StaticLayer"}            
+        </rosparam>
+    </group>
+
+    <node pkg="rviz" type="rviz" name="rviz" 
+        args="-d $(find publish_change_initialpose_rviz)/rviz/config/minimal.rviz" />
+</launch>
+

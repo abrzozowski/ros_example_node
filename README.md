@@ -14,3 +14,9 @@ $ roslaunch access_occupancygrid_by_service minimal.launch
 ```
 $ roslaunch publish_simple_occupancy_grid minimal.launch
 ```
+![publish_simple_occupancy_grid](./readme_resources/publish_simple_occupancy_grid.png)
+
+## publish_change_initialpose_rviz
+```
+$ roslaunch publish_change_initialpose_rviz minimal.launch
+```

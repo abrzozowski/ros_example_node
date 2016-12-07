@@ -8,7 +8,8 @@ int main(int argc, char **argv)
     ros::NodeHandle n;
     ros::Publisher occupancy_pub = n.advertise<nav_msgs::OccupancyGrid>("simple_occupancy_grid", 1);
 
-    int width = 10, height = 102;
+    int width = 10;
+    int height = 102;
     double resolution = 0.1;
     nav_msgs::OccupancyGrid grid;
 
@@ -19,13 +20,9 @@ int main(int argc, char **argv)
     grid.info.height = height;
     grid.data.resize(width * height);
 
-    int value = -1;
     for (unsigned int i = 0; i < grid.data.size(); i++)
     {
-        grid.data[i] = value;
-
-        if ((i + 1) % width == 0 && i > 0)
-            value++;
+        grid.data[i] = (i / width) - 1;
     }
 
     ros::Rate r(1.0);
