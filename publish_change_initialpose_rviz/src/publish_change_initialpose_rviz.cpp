@@ -34,19 +34,18 @@ void initialPoseCallback(const geometry_msgs::PoseWithCovarianceStamped::ConstPt
 {
     tf::Quaternion q;
     transform.setOrigin(tf::Vector3(pose->pose.pose.position.x, pose->pose.pose.position.y, 0.0));
-    q.setRPY(0, 0, pose->pose.pose.orientation.z);
+    q.setW(pose->pose.pose.orientation.w);
+    q.setX(pose->pose.pose.orientation.x);
+    q.setY(pose->pose.pose.orientation.y);
+    q.setZ(pose->pose.pose.orientation.z);
+
     transform.setRotation(q);
-    geometry_msgs::PoseStamped start;
-    start.header.stamp = pose->header.stamp;
-    start.header.frame_id = pose->header.frame_id;
-    start.pose.position = pose->pose.pose.position;
-    start.pose.orientation = pose->pose.pose.orientation;
 }
 
 void broadcastTF(const tf::Transform& transform)
 {
     ros::NodeHandle n;
-    ros::Rate rate(5.0);
+    ros::Rate rate(50.0);
 
     while (n.ok())
     {
